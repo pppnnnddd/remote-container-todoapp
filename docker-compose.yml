@@ -1,0 +1,46 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    volumes:
+      - ./backend/:/go/src/app:cached
+    command: sleep infinity
+    ports:
+      - 8080:8080
+    depends_on:
+      - "db"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    volumes:
+      - ./frontend:/usr/src/app/
+    #command: sh -c "cd react-sample && yarn start"
+    command: sleep infinity
+    ports:
+      - "3000:3000"
+
+  db:
+    hostname: go-sandbox-db
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: go_database
+      MYSQL_USER: go_test
+      MYSQL_PASSWORD: password
+      TZ: "Asia/Tokyo"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - db-data:/var/lib/mysql
+      - ../.db/conf:/etc/mysql/conf.d
+      - ../.db/init:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+
+volumes:
+  db-data:
+    driver: local
