@@ -7,7 +7,8 @@ services:
       dockerfile: Dockerfile.backend
     volumes:
       - ./backend/:/go/src/app:cached
-    command: sleep infinity
+    #command: sleep infinity
+    command: go run main.go
     ports:
       - 8080:8080
     depends_on:

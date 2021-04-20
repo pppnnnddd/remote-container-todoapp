@@ -1,0 +1,30 @@
+### TODOの一覧を取得する
+Get http://app:8080/todos HTTP/1.1
+
+### IDを指定してTODOを取得する
+Get http://app:8080/todos/41 HTTP/1.1
+
+### TODOを作成する
+Post http://app:8080/todos HTTP/1.1
+
+{
+    "name" : "golang"
+}
+
+### TODOを開始する
+POST http://app:8080/todos/42/start HTTP/1.1
+
+{
+}
+
+### TODOを完了する
+POST http://app:8080/todos/43/done HTTP/1.1
+
+{
+}
+
+### TODOを削除する
+DELETE  http://app:8080/todos HTTP/1.1
+
+### 特定のTODOを削除する
+DELETE  http://app:8080/todos/:id HTTP/1.1
