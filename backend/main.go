@@ -1,6 +1,7 @@
 package main
 
 import (
+
 	"github.com/gin-gonic/gin"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/microsoft/vscode-remote-try-go/controllers"
@@ -14,6 +15,7 @@ func main() {
 	defer db.Close()
 	db.AutoMigrate(&models.Todo{})
 	router := gin.Default()
+
 	taskRepository := repositories.CreateTaskRepository(db)
 	taskController := controllers.CreateTaskController(taskRepository, router)
 
