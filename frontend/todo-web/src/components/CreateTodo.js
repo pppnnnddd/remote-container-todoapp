@@ -7,26 +7,23 @@ import './CreateTodo.css';
 
 const CreateTodo = ({fetchTodos}) => {
 
-    const [title, setTitle] = useState("");
+    const [name, setName] = useState("");
 
     const onClick = event => {
-        console.log("onclick")
-        console.log(title)
-
         const request = {}
-        request.name = title
+        request.name = name
         axios.post(`/todos`, request, {})
             .then(response => {
                 fetchTodos(response.data);
             });
+        setName("")
     }
 
-
   return (
-    <div>
-      <TextField id="filled-basic" label="Filled" variant="filled" onChange={(e) => setTitle(e.target.value)} />
+    <div className="CreateTodo">
+      <TextField id="filled-basic" label="Filled" variant="filled" value={name} onChange={(e) => setName(e.target.value)} className="Todo" />
       <Fab color="primary" aria-label="add" onClick={onClick}>
-        <AddIcon />
+        <AddIcon className="AddButton" />
       </Fab>
     </div>
   );

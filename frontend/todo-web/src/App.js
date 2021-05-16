@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CreateTodo from './components/CreateTodo'
+import { List } from '@material-ui/core';
 import Todo from './components/Todo'
 import './App.css';
 
@@ -37,13 +38,11 @@ function App() {
         <CreateTodo fetchTodos={fetchData}></CreateTodo>
       </div>
       <div className="Todos">
-        <ol>
+        <List>
           {data.todos.map(todo => (
-          <li key={todo.id}>
             <Todo todo={todo} fetchTodos={fetchData}></Todo>
-          </li>
         ))}
-        </ol>
+        </List>
       </div>
     </div>
   );

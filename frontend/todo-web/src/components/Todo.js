@@ -1,12 +1,15 @@
+import React, { useState } from 'react';
 import axios from 'axios';
-import { Grid, Checkbox, IconButton } from '@material-ui/core';
+import { ListItem, Grid, Checkbox, IconButton } from '@material-ui/core';
 import {Delete} from '@material-ui/icons';
 import './Todo.css';
 
 
 const Todo = ({todo, fetchTodos}) => {
 
-   const onClick = event => {
+    const [checked, setChecked] = useState(false);
+    //setChecked(todo.status=="Done")
+    const onClickDelete = event => {
         console.log("onclick")
         console.log(todo.id)
         axios.delete(`/todos/${todo.id}`, {})
@@ -15,23 +18,38 @@ const Todo = ({todo, fetchTodos}) => {
             });
     }
 
+    const changeStatus = event => {
+        console.log("changeStatus")
+        console.log(todo.id)
+        setChecked(!checked)
+        axios.post(`/todos/${todo.id}/start`, {})
+        axios.post(`/todos/${todo.id}/done`, {})
+        .then(response => {
+            fetchTodos(response.data);
+        });
+    }
+
   return (
-    <div>
+    <ListItem className="TodoItem">
         <Grid container spacing={3} className="Todo">
             <Grid item xs={2}>
-                <Checkbox>
+                <Checkbox
+                    checked={checked}
+                    onChange={changeStatus}
+                    disabled={checked}
+                >
                 </Checkbox>
             </Grid>
             <Grid item xs={8}>
-                {todo.name}
+                <label>{todo.name}</label>
             </Grid>
             <Grid item xs={2}>
-                <IconButton aria-label="delete" onClick={onClick}>
+                <IconButton aria-label="delete" onClick={onClickDelete}>
                     <Delete />
                 </IconButton>
             </Grid>
         </Grid>
-    </div>
+    </ListItem>
   );
 }
 

@@ -1,3 +1,7 @@
-.Todo {
+.CreateTodo {
   align-items: center;
+  margin: 1em;
+}
+
+.Todo {
 }
