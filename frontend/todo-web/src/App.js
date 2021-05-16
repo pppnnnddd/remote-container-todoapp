@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CreateTodo from './components/CreateTodo'
-import { List } from '@material-ui/core';
+import { List, Grid, InputLabel } from '@material-ui/core';
 import Todo from './components/Todo'
 import './App.css';
 
@@ -34,16 +34,21 @@ function App() {
           golang and React Example Todo App
         </p>
       </header>
-      <div>
-        <CreateTodo fetchTodos={fetchData}></CreateTodo>
-      </div>
-      <div className="Todos">
-        <List>
-          {data.todos.map(todo => (
-            <Todo todo={todo} fetchTodos={fetchData}></Todo>
-        ))}
-        </List>
-      </div>
+      <Grid container spacing={3} className="Main">
+        <Grid item xs={12}>
+          <InputLabel></InputLabel>
+        </Grid>
+        <Grid item xs={12}>
+          <CreateTodo fetchTodos={fetchData} className="CreateTodo"></CreateTodo>
+        </Grid>
+        <Grid item xs={12} className="Todos">
+          <List>
+            {data.todos.map(todo => (
+              <Todo todo={todo} fetchTodos={fetchData}></Todo>
+          ))}
+          </List>
+        </Grid>
+      </Grid>
     </div>
   );
 }

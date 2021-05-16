@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { ListItem, Grid, Checkbox, IconButton } from '@material-ui/core';
+import { ListItem, Grid, Checkbox, IconButton, InputLabel } from '@material-ui/core';
 import {Delete} from '@material-ui/icons';
 import './Todo.css';
 
@@ -33,18 +33,20 @@ const Todo = ({todo, fetchTodos}) => {
     <ListItem className="TodoItem">
         <Grid container spacing={3} className="Todo">
             <Grid item xs={2}>
-                <Checkbox
+                <Checkbox className="Check"
                     checked={checked}
                     onChange={changeStatus}
                     disabled={checked}
                 >
                 </Checkbox>
             </Grid>
-            <Grid item xs={8}>
-                <label>{todo.name}</label>
+            <Grid item xs={8} className="Name">
+                <InputLabel
+                    disabled={checked}
+                >{todo.name}</InputLabel>
             </Grid>
             <Grid item xs={2}>
-                <IconButton aria-label="delete" onClick={onClickDelete}>
+                <IconButton aria-label="delete" onClick={onClickDelete} className="DeleteButton">
                     <Delete />
                 </IconButton>
             </Grid>

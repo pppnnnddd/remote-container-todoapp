@@ -1,3 +1,14 @@
+.TodoItem {
+}
+
 .Todo {
   align-items: center;
+}
+
+.Check {
+}
+
+.Name {
+  width: 500px;
+  text-align: left;
 }
