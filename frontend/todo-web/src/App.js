@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CreateTodo from './components/CreateTodo'
+import Todo from './components/Todo'
 import './App.css';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     const result = await axios(
       '/todos', configs
     );
+    console.log(result.data)
     setData({ todos: result.data});
   };
 
@@ -32,16 +34,16 @@ function App() {
         </p>
       </header>
       <div>
-        <CreateTodo myFunc={fetchData}></CreateTodo>
+        <CreateTodo fetchTodos={fetchData}></CreateTodo>
       </div>
       <div className="Todos">
-        <ul>
+        <ol>
           {data.todos.map(todo => (
           <li key={todo.id}>
-            <div>{todo.name} : {todo.status}</div>
+            <Todo todo={todo} fetchTodos={fetchData}></Todo>
           </li>
         ))}
-        </ul>
+        </ol>
       </div>
     </div>
   );

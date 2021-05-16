@@ -20,3 +20,7 @@
   justify-content: center;
   font-size: calc(5px + 2vmin);
 }
+
+ol {
+  list-style-type: none;
+}
