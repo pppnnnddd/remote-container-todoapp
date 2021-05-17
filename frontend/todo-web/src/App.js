@@ -34,10 +34,8 @@ function App() {
           golang and React Example Todo App
         </p>
       </header>
-      <Grid container spacing={3} className="Main">
-        <Grid item xs={12}>
-          <InputLabel></InputLabel>
-        </Grid>
+      <div className="Main">
+      <Grid container spacing={3}>
         <Grid item xs={12}>
           <CreateTodo fetchTodos={fetchData} className="CreateTodo"></CreateTodo>
         </Grid>
@@ -49,6 +47,7 @@ function App() {
           </List>
         </Grid>
       </Grid>
+      </div>
     </div>
   );
 }

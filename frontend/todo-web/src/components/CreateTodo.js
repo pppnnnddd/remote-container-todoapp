@@ -21,8 +21,7 @@ const CreateTodo = ({fetchTodos}) => {
 
   return (
     <Grid className="CreateTodo" container spacing={3}>
-      <Grid item xs={1}></Grid>
-      <Grid item xs={9}>
+      <Grid item xs={10}>
         <TextField id="outlined-full-width" fullWidth label="todo" variant="filled" value={name} onChange={(e) => setName(e.target.value)} className="Todo" />
       </Grid>
       <Grid item xs={2}>
